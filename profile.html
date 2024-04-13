@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background-color: #FFFFFF;
+        }
+
+.logo img {
+  width: 300px; 
+  height: auto;
+}
+
+nav {
+  margin-left: auto; 
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li {
+  padding: 10px;
+  display: block;
+}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-info h2,
+        .order-history h2 {
+            margin-bottom: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        
+        .order-history ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .order-history ul li {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        
+        .order-history ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .order-history ul li span {
+            font-weight: bold;
+        }
+        
+        /* Optional: Add more styles as needed */
+        @media screen and (max-width: 768px) {
+        .logo img {
+            width: 150px;
+        }
+
+        nav ul li {
+            display: block; /* Display each navigation link as a block */
+            margin: 10px 0; /* Add some vertical margin between links */
+        }
+    }
+    .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .footer .social-icons i {
+            font-size: 20px;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <header class="navigation">
+        <div class="logo">
+          <img src="MOB logo.jpg" alt="Company-logo">
+        </div>
+        <nav>
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li class="dropdown">
+              <a href="#">Services &#9662;</a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Read a Book Online</a></li>
+                <li><a href="books.html">Buy a Book</a></li>
+                <li><a href="#">Publish literature</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Resources</a></li>
+            <li><a href="countries.html">Countries</a></li>
+            <li><a href="#">Admin</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="profile.html">Profile</a></li>
+                <div class="dropdown">
+                    <a href="index.html" onclick="logout()"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                </div>
+              <div class="dropdown">
+                  <a href="#"><i class="bi bi-person"></i></a>
+              </div>
+          </li>
+          <li class="cart-icon"><a href="#"><i class="bi bi-cart"></i></a></li>
+          </ul>
+        </nav>
+      </header>
+    <div class="container">
+        <section class="profile-info">
+            <h2>Edit Profile</h2>
+            <form id="profile-form">
+                <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" name="first-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" name="last-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="shipping-address">Shipping Address</label>
+                    <textarea id="shipping-address" name="shipping-address" required></textarea>
+                </div>
+                <input type="submit" value="Save Changes">
+            </form>
+        </section>
+        <section class="order-history">
+            <h2>Order History</h2>
+            <ul id="order-list">
+                <!-- Order history items will be dynamically added here -->
+            </ul>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="#"><i class="bi bi-twitter"></i></a>
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 Mariifa Online Bookstore. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            displayUserInfo();
+            displayOrderHistory();
+            
+            document.getElementById('profile-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                saveUserInfo();
+            });
+        });
+        
+        function displayUserInfo() {
+            // Fetch user information from local storage or database and populate the form fields
+            const firstNameInput = document.getElementById('first-name');
+            const lastNameInput = document.getElementById('last-name');
+            const emailInput = document.getElementById('email');
+            const shippingAddressInput = document.getElementById('shipping-address');
+        
+            // Example: Retrieving user information from local storage
+            const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        
+            if (userInfo) {
+                firstNameInput.value = userInfo.firstName;
+                lastNameInput.value = userInfo.lastName;
+                emailInput.value = userInfo.email; // Populate email field with user's email address
+                shippingAddressInput.value = userInfo.shippingAddress;
+            }
+        }
+        
+        function saveUserInfo() {
+            // Retrieve form data
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const email = document.getElementById('email').value;
+            const shippingAddress = document.getElementById('shipping-address').value;
+        
+            // Save user information to local storage or update database
+            const userInfo = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                shippingAddress: shippingAddress
+            };
+        
+            localStorage.setItem('userInfo', JSON.stringify(userInfo));
+        
+            // Optionally, show a success message to the user
+            alert('Profile updated successfully!');
+        }
+        
+        function displayOrderHistory() {
+            // Fetch order history from local storage or database
+            const orderHistory = JSON.parse(localStorage.getItem('orderHistory'));
+        
+            const orderList = document.getElementById('order-list');
+        
+            if (orderHistory) {
+                orderHistory.forEach(order => {
+                    const orderItem = document.createElement('li');
+                    orderItem.innerHTML = `Order ID: <span>${order.orderId}</span><br>Order Status: <span>${order.status}</span>`;
+                    orderList.appendChild(orderItem);
+                });
+            } else {
+                // If no order history is found, display a message
+                orderList.innerHTML = '<li>No order history available</li>';
+            }
+        }
+
+        function logout() {
+        // Perform logout actions here
+        alert("Logged out successfully!");
+        }
+    </script>
+</body>
+</html>

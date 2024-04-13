@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Books</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
+<style>
+    header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background-color: #FFFFFF;
+        }
+
+.logo img {
+  width: 300px; 
+  height: auto;
+}
+
+nav {
+  margin-left: auto; 
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li {
+  padding: 10px;
+  display: block;
+}
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    h2 {
+        margin-top: 30px;
+    }
+
+    /* Book Form */
+    #bookForm {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #bookForm label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    #bookForm input[type="text"],
+    #bookForm input[type="number"],
+    #bookForm input[type="file"],
+    #bookForm button {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    #bookForm input[type="checkbox"] {
+        margin-top: 10px;
+    }
+
+    #bookForm button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    #bookForm button:hover {
+        background-color: #45a049;
+    }
+
+    #cancelBtn {
+        background-color: #f44336;
+    }
+
+    #cancelBtn:hover {
+        background-color: #da190b;
+    }
+
+    /* Existing Books */
+    #existingBooks {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 30px;
+    }
+
+    #existingBooks li {
+        background-color: #f9f9f9;
+        padding: 10px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #existingBooks li button {
+        float: right;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+
+    .availabilityTick {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .availabilityText {
+        margin-left: 5px;
+    }
+
+    .availabilityText.available {
+        color: green;
+    }
+
+    .availabilityText.unavailable {
+        color: red;
+    }
+
+    @media screen and (max-width: 768px) {
+        .logo img {
+            width: 150px;
+        }
+
+        nav ul li {
+            display: block; /* Display each navigation link as a block */
+            margin: 10px 0; /* Add some vertical margin between links */
+        }
+    }
+    .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .footer .social-icons i {
+            font-size: 20px;
+            margin: 0 5px;
+        }
+</style>
+</head>
+<body>
+    <header class="navigation">
+        <div class="logo">
+          <img src="MOB logo.jpg" alt="Company-logo">
+        </div>
+        <nav>
+          <ul>
+            <li><a href="admin.html">Home</a></li>
+            <li class="dropdown">
+              <a href="#">Services &#9662;</a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Read a Book Online</a></li>
+                <li><a href="books.html">Buy a Book</a></li>
+                <li><a href="#">Publish literature</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Resources</a></li>
+            <li><a href="countries.html">Countries</a></li>
+            <li><a href="#">Admin</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li class="profile-icon">
+              <div class="dropdown">
+                  <a href="#"><i class="bi bi-person"></i></a>
+                  <div class="dropdown-menu">
+                      <a href="#">Sign Up</a>
+                      <a href="#">Log In</a>
+                  </div>
+              </div>
+          </li>
+          <li class="cart-icon"><a href="#"><i class="bi bi-cart"></i></a></li>
+          </ul>
+        </nav>
+      </header>
+<h1>Manage Books</h1>
+
+<!-- Book Form -->
+<form id="bookForm">
+    <input type="hidden" id="bookId">
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" required><br>
+    <label for="author">Author:</label><br>
+    <input type="text" id="author" name="author" required><br>
+    <label for="country">Country:</label><br>
+    <input type="text" id="country" name="country" required><br>
+    <label for="year">Year Released:</label><br>
+    <input type="number" id="year" name="year" required><br>
+    <label for="price">Price (USD):</label><br>
+    <input type="number" id="price" name="price" required><br>
+    <label for="availability">Availability:</label><br>
+    <input type="checkbox" id="availability" name="availability" checked><br>
+    <label for="cover">Book Cover:</label><br>
+    <input type="file" id="cover" name="cover" accept="image/*"><br>
+    <button type="submit" id="saveBtn">Add Book</button>
+    <button type="button" id="cancelBtn" style="display: none;">Cancel</button>
+    <h3><a href="books.html">Check Books Page</a></h3>
+</form>
+
+<!-- Existing Books -->
+<h2>Existing Books</h2>
+<ul id="existingBooks">
+    <!-- Existing books will be dynamically added here -->
+</ul>
+
+<footer class="footer">
+    <div class="social-icons">
+        <a href="#"><i class="bi bi-twitter"></i></a>
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
+    </div>
+    <p>&copy; 2024 Mariifa Online Bookstore. All rights reserved.</p>
+</footer>
+
+<script>
+    // Load existing books when the page loads
+    window.onload = function() {
+        loadExistingBooks();
+    };
+
+    // Add or Edit book
+    document.getElementById("bookForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        // Get form values
+        var bookId = document.getElementById("bookId").value;
+        var title = document.getElementById("title").value;
+        var author = document.getElementById("author").value;
+        var country = document.getElementById("country").value;
+        var year = document.getElementById("year").value;
+        var price = document.getElementById("price").value;
+        var availability = document.getElementById("availability").checked;
+        var cover = document.getElementById("cover").files[0]; // Get the selected file
+
+        // Create book object
+        var book = {
+            id: bookId,
+            title: title,
+            author: author,
+            country: country,
+            year: year,
+            price: price,
+            availability: availability,
+            cover: cover.name // Store only the file name
+        };
+
+        // Save or update book in localStorage
+        saveOrUpdateBook(book);
+
+        // Reset form
+        document.getElementById("bookForm").reset();
+
+        // Reload existing books
+        loadExistingBooks();
+
+        // Change button to 'Add Book' after edit
+        document.getElementById("saveBtn").textContent = "Add Book";
+        document.getElementById("cancelBtn").style.display = "none";
+        document.getElementById("bookId").value = ""; // Clear bookId field
+
+        alert("Book saved successfully!");
+    });
+
+    // Cancel edit
+    document.getElementById("cancelBtn").addEventListener("click", function() {
+        // Reset form
+        document.getElementById("bookForm").reset();
+
+        // Change button to 'Add Book'
+        document.getElementById("saveBtn").textContent = "Add Book";
+        document.getElementById("cancelBtn").style.display = "none";
+        document.getElementById("bookId").value = ""; // Clear bookId field
+    });
+
+    // Load existing books
+    function loadExistingBooks() {
+        var existingBooks = JSON.parse(localStorage.getItem("books")) || [];
+        var existingBooksList = document.getElementById("existingBooks");
+        existingBooksList.innerHTML = "";
+
+        existingBooks.forEach(function(book) {
+            var listItem = document.createElement("li");
+            listItem.textContent = book.title + " by " + book.author;
+
+            var editButton = document.createElement("button");
+            editButton.textContent = "Edit";
+            editButton.onclick = function() {
+                editBook(book);
+            };
+
+            var deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.onclick = function() {
+                deleteBook(book.id);
+            };
+
+            var availabilityIcon = document.createElement("span");
+            availabilityIcon.className = "availabilityTick";
+            if (book.availability) {
+                availabilityIcon.style.backgroundColor = "green";
+                availabilityIcon.innerHTML = "&#10004;"; // Checkmark
+                listItem.innerHTML += '<span class="availabilityText available">Available</span>';
+            } else {
+                availabilityIcon.style.backgroundColor = "red";
+                availabilityIcon.innerHTML = "&#10008;"; // Cross mark
+                listItem.innerHTML += '<span class="availabilityText unavailable">Unavailable</span>';
+            }
+
+            availabilityIcon.onclick = function() {
+                toggleAvailability(book.id);
+            };
+
+            listItem.appendChild(availabilityIcon);
+            listItem.appendChild(editButton);
+            listItem.appendChild(deleteButton);
+            existingBooksList.appendChild(listItem);
+        });
+    }
+
+    // Edit book
+    function editBook(book) {
+        // Fill form fields with book details
+        document.getElementById("bookId").value = book.id;
+        document.getElementById("title").value = book.title;
+        document.getElementById("author").value = book.author;
+        document.getElementById("country").value = book.country;
+        document.getElementById("year").value = book.year;
+        document.getElementById("price").value = book.price;
+        document.getElementById("availability").checked = book.availability;
+
+        // Change button to 'Update Book'
+        document.getElementById("saveBtn").textContent = "Update Book";
+        document.getElementById("cancelBtn").style.display = "inline";
+    }
+
+    // Save or update book in localStorage
+    function saveOrUpdateBook(book) {
+        var existingBooks = JSON.parse(localStorage.getItem("books")) || [];
+
+        if (book.id) {
+            // Update existing book
+            var index = existingBooks.findIndex(function(b) {
+                return b.id == book.id;
+            });
+            if (index !== -1) {
+                existingBooks[index] = book;
+            }
+        } else {
+            // Add new book
+            book.id = generateId(); // Generate unique ID
+            existingBooks.push(book);
+        }
+
+        localStorage.setItem("books", JSON.stringify(existingBooks));
+    }
+
+    // Delete book
+    function deleteBook(bookId) {
+        var existingBooks = JSON.parse(localStorage.getItem("books")) || [];
+        var updatedBooks = existingBooks.filter(function(book) {
+            return book.id != bookId;
+        });
+        localStorage.setItem("books", JSON.stringify(updatedBooks));
+        loadExistingBooks();
+    }
+
+    // Toggle availability
+    function toggleAvailability(bookId) {
+        var existingBooks = JSON.parse(localStorage.getItem("books")) || [];
+        var bookIndex = existingBooks.findIndex(function(book) {
+            return book.id == bookId;
+        });
+        if (bookIndex !== -1) {
+            existingBooks[bookIndex].availability = !existingBooks[bookIndex].availability;
+            localStorage.setItem("books", JSON.stringify(existingBooks));
+            loadExistingBooks(); // Reload book list to reflect changes
+        }
+    }
+
+    // Generate unique ID
+    function generateId() {
+        return '_' + Math.random().toString(36).substr(2, 9);
+    }
+</script>
+
+</body>
+</html>

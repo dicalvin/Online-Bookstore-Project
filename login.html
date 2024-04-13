@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Styles -->
+    <style>
+        header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background-color: #FFFFFF;
+        }
+
+.logo img {
+  width: 300px; 
+  height: auto;
+}
+
+nav {
+  margin-left: auto; 
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li {
+  padding: 10px;
+  display: block;
+}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        @media screen and (max-width: 768px) {
+        .logo img {
+            width: 150px;
+        }
+
+        nav ul li {
+            display: block; /* Display each navigation link as a block */
+            margin: 10px 0; /* Add some vertical margin between links */
+        }
+    }
+    .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .footer .social-icons i {
+            font-size: 20px;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <header class="navigation">
+        <div class="logo">
+          <img src="MOB logo.jpg" alt="Company-logo">
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+              <a href="#">Services &#9662;</a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Read a Book Online</a></li>
+                <li><a href="#">Buy a Book</a></li>
+                <li><a href="#">Publish literature</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Resources</a></li>
+            <li><a href="countries.html">Countries</a></li>
+            <li><a href="adminLogin.html">Admin</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li class="profile-icon">
+              <div class="dropdown">
+                  <a href="#"><i class="bi bi-person"></i></a>
+                  <div class="dropdown-menu">
+                      <a href="#">Sign Up</a>
+                      <a href="#">Log In</a>
+                  </div>
+              </div>
+          </li>
+          <li class="cart-icon"><a href="#"><i class="bi bi-cart"></i></a></li>
+          </ul>
+        </nav>
+      </header>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+        <div class="signup-link">
+            <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+        </div>
+    </div>
+
+    <footer class="footer">
+      <div class="social-icons">
+          <a href="#"><i class="bi bi-twitter"></i></a>
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+      </div>
+      <p>&copy; 2024 Mariifa Online Bookstore. All rights reserved.</p>
+  </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            // Handle login form submission here
+            // You can add validation and login logic
+            // For demonstration, let's assume the login is successful and redirect to the homepage
+            window.location.href = "home.html";
+            event.preventDefault(); // Prevent default form submission
+        });
+
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            // Handle login form submission here
+            // You can add validation and login logic
+            // For demonstration, let's assume the login is successful and redirect to the homepage
+            const email = document.getElementById('email').value;
+            localStorage.setItem('loggedInUser', email); // Save the logged-in user's email to localStorage
+            window.location.href = "home.html"; // Redirect to home page
+            event.preventDefault(); // Prevent default form submission
+        });
+    </script>
+</body>
+</html>
